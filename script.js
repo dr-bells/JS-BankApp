@@ -80,3 +80,15 @@ const displayMovements = function (movements) {
 };
 
 displayMovements(account1.movements);
+
+const user = 'Steven Thomas Williams'; //l need stw abbreviation
+
+const createUserNames = function (user) {
+  const username = user
+    .toLowerCase()
+    .split(' ')
+    .map(name => name[0])
+    .join('');
+
+  return username;
+};
