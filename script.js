@@ -83,15 +83,17 @@ displayMovements(account1.movements);
 
 const user = 'Steven Thomas Williams'; //l need stw abbreviation
 
-const createUserNames = function (user) {
-  const username = user
-    .toLowerCase()
-    .split(' ')
-    .map(name => name[0])
-    .join('');
+const createUserNames = function (arr_with_useraccounts) {
+  arr_with_useraccounts.forEach(function (one_account) {
+    one_account.username = one_account.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
 
-  return username;
+    // return username;
+  });
 };
 
-console.log(createUserNames('Steven Thomas Williams'));
-console.log(createUserNames(user));
+createUserNames(accounts);
+console.log(accounts);
