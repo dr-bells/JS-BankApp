@@ -120,10 +120,11 @@ const calcDisplaySummary = function (movements) {
   const interest = movements
     .filter(mov => mov > 0)
     .map(deposit => (deposit * 1.2) / 100)
-    .reduce((acc, inter) => acc + inter, 0);
+    .reduce((acc, inter) => acc + inter, 0)
+    .toFixed(2);
   labelSumInterest.textContent = `${interest} PLN`;
 };
-calcDisplaySummary(account1.movements);
+calcDisplaySummary(account3.movements);
 
 // *************
 // FILTER
