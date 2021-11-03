@@ -72,7 +72,7 @@ const displayMovements = function (movements) {
     const html = `  
   <div class="movements__row">
     <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-    <div class="movements__value">${mov}€</div>
+    <div class="movements__value">${mov}</div>
   </div>`;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -97,3 +97,44 @@ const createUserNames = function (arr_with_useraccounts) {
 
 createUserNames(accounts);
 console.log(accounts);
+
+const calcDisplayBalance = function (movements) {
+  const balance2 = movements.reduce((acc, cur) => acc + cur, 0);
+  labelBalance.textContent = `${balance2} PLN`;
+};
+
+calcDisplayBalance(account1.movements);
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes} PLN`;
+
+  const withdrawals = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${withdrawals} PLN`;
+};
+calcDisplaySummary(account1.movements);
+
+// *************
+// FILTER
+// const deposits = movements.filter(function (mov) {
+//   return mov > 0;
+// });
+const deposits = movements.filter(mov => mov > 0);
+const withdrawals = movements.filter(mov => mov < 0);
+console.log(movements);
+console.log(deposits);
+console.log(withdrawals);
+
+// REDUCE
+// acc - accumulator - snowball
+// cur - current, i - index
+
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
