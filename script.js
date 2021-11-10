@@ -104,29 +104,29 @@ const calcDisplayBalance = function (movements) {
 };
 
 calcDisplayBalance(account1.movements);
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes} PLN`;
 
-  const withdrawals = movements
+  const withdrawals = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${withdrawals} PLN`;
 
   // The bank pays interest for every deposit at a rate of 1.2%"
   //This is to be changed later on
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .reduce((acc, inter) => acc + inter, 0)
     .toFixed(2);
 
   console.log(interest);
   labelSumInterest.textContent = `${interest} PLN`;
 };
-calcDisplaySummary(account3.movements);
+//calcDisplaySummary(account3.movements);
 
 // *************
 // FILTER
@@ -168,9 +168,18 @@ btnLogin.addEventListener('click', function (e) {
     }`;
     containerApp.style.opacity = 100;
 
-    //Display mMovements
+    //Display movements
+    displayMovements(currentAccount.movements);
 
     //Display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    //Display summary
+    calcDisplaySummary(currentAccount);
+
+    //Clear input fields
+    inputLoginPin.value = inputLoginUsername.value = '';
+    inputLoginPin.blur();
   }
 });
 
