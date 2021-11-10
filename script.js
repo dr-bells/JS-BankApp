@@ -149,3 +149,38 @@ console.log(withdrawals);
 // }, 0);
 const balance = movements.reduce((acc, cur) => acc + cur, 0);
 console.log(balance);
+
+let currentAccount;
+btnLogin.addEventListener('click', function (e) {
+  //prevent form from permitting
+  e.preventDefault();
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    console.log('LOGIN OK');
+
+    //Display UI and welcome message
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 100;
+
+    //Display mMovements
+
+    //Display balance
+  }
+});
+
+// btnTransfer.addEventListener('click', function (e) {
+//   e.preventDefault();
+//   const amount = Number(inputTransferAmount.value);
+//   const receiverAccount = accounts.find(
+//     acc => acc.username === inputTransferTo.value
+//   );
+//   console.log(amount, receiverAccount);
+//   if (amount > 0 && currentAccount.balance >= amount && ) {
+//   }
+// });
