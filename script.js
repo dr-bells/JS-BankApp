@@ -122,8 +122,11 @@ const calcDisplaySummary = function (movements) {
     .map(deposit => (deposit * 1.2) / 100)
     .reduce((acc, inter) => acc + inter, 0)
     .toFixed(2);
+<<<<<<< HEAD
 
   console.log(interest);
+=======
+>>>>>>> 01755c58f58b4bc8e4d2196907e449016e15a635
   labelSumInterest.textContent = `${interest} PLN`;
 };
 calcDisplaySummary(account3.movements);
